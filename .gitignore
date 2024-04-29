@@ -1,0 +1,13 @@
+node_modules/
+/dist
+/coverage
+.DS_Store
+/scripts/out
+.env
+/dump*
+.idea
+.idea/*
+.replhistory
+*.log
+*.pdf
+.lh
