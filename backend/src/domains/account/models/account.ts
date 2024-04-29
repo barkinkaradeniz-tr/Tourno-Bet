@@ -30,7 +30,10 @@ const schema = new Schema<AccountDocument, AccountModel>(
       required: true,
       select: false,
     },
-    approved: Boolean,
+    approved: {
+      type: Boolean,
+      default: false,
+    },
     createdAt: Date,
     updatedAt: Date,
   },
