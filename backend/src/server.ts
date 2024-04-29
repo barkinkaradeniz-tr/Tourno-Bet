@@ -23,7 +23,7 @@ class App {
 
   private initializeRoutes() {
     this.server.get("/health", (req, res) => res.json({ status: "ok" }));
-    // this.server.use("/account", require("./routes/account").default);
+    this.server.use("/account", require("./routes/account").default);
   }
 }
 
