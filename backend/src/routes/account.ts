@@ -7,7 +7,6 @@ import {
   ensureAuthentication,
   LoggedInRequest,
   ensureOrphands,
-  // ensureEmailVerified,
 } from "../lib/middlewares/local-strategy";
 
 const router = AsyncRouter();
