@@ -12,20 +12,9 @@ import {
 
 const router = AsyncRouter();
 
-router.post(
-  "/session",
-  ensureOrphands,
-  celebrate({
-    [Segments.BODY]: Joi.object().keys({
-      email: Joi.string().email().required(),
-      password: Joi.string(),
-    }),
-  }),
-  passport.authenticate("local", { failWithError: true }),
-  (req: LoggedInRequest) => {
-    return req.user;
-  }
-);
+router.get("/", ensureAuthentication, (req: LoggedInRequest) => {
+  return req.user;
+});
 
 router.post(
   "/user",
@@ -56,5 +45,29 @@ router.post(
     });
   }
 );
+
+router.post(
+  "/session",
+  ensureOrphands,
+  celebrate({
+    [Segments.BODY]: Joi.object().keys({
+      email: Joi.string().email().required(),
+      password: Joi.string(),
+    }),
+  }),
+  passport.authenticate("local", { failWithError: true }),
+  (req: LoggedInRequest) => {
+    return req.user;
+  }
+);
+
+router.delete("/session", ensureAuthentication, (req, res) => {
+  res.clearCookie("connect.sid");
+
+  req.session.destroy((err) => {
+    if (err) res.send(err).sendStatus(401);
+    else req.logout(() => {});
+  });
+});
 
 export default router;
