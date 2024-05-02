@@ -1,7 +1,6 @@
 import { Strategy as LocalStrategy } from "passport-local";
 import * as AccountManager from "../../domains/account/manager";
 import { UserDocument } from "../../domains/account/models/user";
-import Account from "../../domains/account/models/account";
 import { RequestHandler } from "express";
 import { UnauthorizedRequestError, BadRequestError } from "../errors";
 
