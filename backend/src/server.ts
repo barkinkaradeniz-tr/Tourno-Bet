@@ -1,11 +1,12 @@
+import hpp from "hpp";
+import cors from "cors";
+import helmet from "helmet";
 import express from "express";
 import passport from "passport";
 import bodyParser from "body-parser";
-import cookieParser from "cookie-parser";
 import session from "express-session";
-import hpp from "hpp";
 import compression from "compression";
-import helmet from "helmet";
+import cookieParser from "cookie-parser";
 import RedisInstance from "./lib/redis/index";
 import * as AccountManager from "./domains/account/manager";
 import LocalStrategy from "./lib/middlewares/local-strategy";
@@ -17,7 +18,7 @@ class App {
 
   constructor() {
     this.server = express();
-    this.port = process.env.PORT || 3000;
+    this.port = process.env.PORT || 4000;
     this.env = process.env.NODE_ENV || "development";
 
     this.initializeMiddlewares();
@@ -38,6 +39,13 @@ class App {
         verify: function (req: any, res: any, buf: any) {
           req.rawBody = buf.toString();
         },
+      })
+    );
+
+    this.server.use(
+      cors({
+        origin: true,
+        credentials: Boolean(process.env.HTTP_CORS_CREDENTIALS),
       })
     );
 
