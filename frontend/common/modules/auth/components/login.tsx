@@ -6,6 +6,7 @@ import { getLoginValidationSchema } from '../services/validationSchema';
 import { useDispatch } from 'react-redux';
 import { login } from '../services/auth-service';
 import { useAppSelector } from '@/common/modules/store';
+import Router from 'next/router';
 
 const Login: React.FC = () => {
   const dispatch = useDispatch();
@@ -20,6 +21,7 @@ const Login: React.FC = () => {
     onSubmit: async values => {
       // @ts-ignore
       dispatch(login(values));
+      if (!error) Router.push('/home');
     },
     validateOnChange: true,
     validateOnBlur: false,
