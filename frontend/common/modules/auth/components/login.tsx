@@ -31,7 +31,7 @@ const Login: React.FC = () => {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-ignore
     loginForm.setFieldTouched();
-  });
+  }, []);
 
   return (
     <div className="bg-gradient-to-b from-cyan-100 to-sky-700 relative backdrop-blur-sm w-full h-full bg-fixed z-10">
