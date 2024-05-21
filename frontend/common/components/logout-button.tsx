@@ -13,7 +13,6 @@ export default function LogoutButton() {
       onClick={() => {
         // @ts-ignore
         dispatch(logoutUser());
-        if (!error) Router.push('/');
       }}
     >
       Logout
