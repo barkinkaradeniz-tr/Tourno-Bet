@@ -10,7 +10,7 @@ import {
 
 const createAccount = async (
   accountData: AccountRaw,
-  options: { session?: any } = {}
+  options: { session?: any } = {},
 ) => {
   const existingAccount = await Account.findOne({
     email: accountData.email.toLowerCase(),
@@ -18,7 +18,7 @@ const createAccount = async (
 
   if (existingAccount)
     throw new BadRequestError(
-      `There is already an account with email ${accountData.email}`
+      `There is already an account with email ${accountData.email}`,
     );
 
   const [account] = await Account.create(
@@ -28,7 +28,7 @@ const createAccount = async (
         hash: await Account.calculateHash(accountData.password),
       },
     ],
-    options
+    options,
   );
 
   if (!account) throw new Error("Account could not be created");
@@ -50,7 +50,7 @@ export const getUserByEmail = async (email: string) => {
 
   if (!user)
     throw new NotFoundError(
-      `Account for email=${email} is found but user not found`
+      `Account for email=${email} is found but user not found`,
     );
 
   return user;
@@ -120,7 +120,7 @@ export const changePassword = async (
     oldPassword: string;
     newPassword: string;
   },
-  account: AccountDocument
+  account: AccountDocument,
 ) => {
   const accountWithHash = await Account.findById(account._id).select("+hash");
 
@@ -168,7 +168,7 @@ export const updateUser = async (
     data,
   }: {
     data: Partial<UserDocument>;
-  }
+  },
 ) => {
   const updateData = _.omit(data, ["email"]);
 

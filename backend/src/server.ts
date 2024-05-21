@@ -39,18 +39,18 @@ class App {
         verify: function (req: any, res: any, buf: any) {
           req.rawBody = buf.toString();
         },
-      })
+      }),
     );
 
     this.server.use(
       cors({
         origin: true,
         credentials: Boolean(process.env.HTTP_CORS_CREDENTIALS),
-      })
+      }),
     );
 
     this.server.use(
-      bodyParser.text({ type: "application/xml", limit: "100mb" })
+      bodyParser.text({ type: "application/xml", limit: "100mb" }),
     );
 
     this.server.set("trust proxy", 1);
@@ -81,7 +81,7 @@ class App {
           secure: process.env.NODE_ENV === "production",
           httpOnly: true,
         },
-      })
+      }),
     );
 
     this.server.use(express.static("scripts"));

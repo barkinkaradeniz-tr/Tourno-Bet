@@ -40,12 +40,12 @@ const schema = new Schema<AccountDocument, AccountModel>(
   {
     timestamps: true,
     _idPrefix: "ACC",
-  } as SchemaOptions
+  } as SchemaOptions,
 );
 
 schema.statics.calculateHash = async function (
   this: AccountModel,
-  password: string
+  password: string,
 ) {
   return await bcrypt.hash(password, 10);
 };
@@ -56,14 +56,14 @@ export interface AccountModel extends Model<AccountDocument> {
 
 schema.methods.validatePassword = function (
   this: AccountDocument,
-  password: string
+  password: string,
 ) {
   return bcrypt.compare(password, this.hash);
 };
 
 schema.methods.updateHash = async function (
   this: AccountDocument,
-  newPassword: string
+  newPassword: string,
 ) {
   this.hash = await bcrypt.hash(newPassword, 10);
 

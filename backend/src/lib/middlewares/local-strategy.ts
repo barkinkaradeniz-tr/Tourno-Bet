@@ -15,8 +15,8 @@ export const ensureOrphands: RequestHandler = (req, res, next) => {
   if (req.isAuthenticated())
     return next(
       new BadRequestError(
-        "There is an ongoing session. Please logout in order to perform this action."
-      )
+        "There is an ongoing session. Please logout in order to perform this action.",
+      ),
     );
   next();
 };
@@ -43,5 +43,5 @@ export default new LocalStrategy(
     } catch (err) {
       done(err);
     }
-  }
+  },
 );

@@ -34,7 +34,7 @@ router.post(
         account: { email, password, emailVerified: false },
         ...rest,
       },
-      req.query.redirectUrl as string
+      req.query.redirectUrl as string,
     );
 
     return req.login(guest, (err: any) => {
@@ -42,7 +42,7 @@ router.post(
 
       return guest;
     });
-  }
+  },
 );
 
 router.post(
@@ -57,7 +57,7 @@ router.post(
   passport.authenticate("local", { failWithError: true }),
   (req: LoggedInRequest) => {
     return req.user;
-  }
+  },
 );
 
 router.delete("/session", ensureAuthentication, (req, res) => {

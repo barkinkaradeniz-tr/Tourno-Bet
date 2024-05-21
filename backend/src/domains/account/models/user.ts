@@ -61,7 +61,7 @@ const schema = new Schema<UserDocument, UserModel>(
     _idPrefix: "U",
     discriminatorKey: "kind",
     collation: { locale: "en_US", strength: 1 },
-  } as SchemaOptions
+  } as SchemaOptions,
 );
 
 export interface UserModel extends PaginateModel<UserPopulatedDocument> {
@@ -76,7 +76,7 @@ schema.statics.getById = async function (this: UserModel, id: string) {
 schema.statics.search = async function (
   this: UserModel,
   query: string,
-  limit = 5
+  limit = 5,
 ) {
   return this.aggregate([
     {
