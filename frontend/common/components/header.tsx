@@ -10,7 +10,7 @@ const Header: FC = () => {
         <Image src={Logo} alt="Logo" width={60} height={60} />
         <h2 className="ml-2 font-bold text-xl">Tourno-Bet</h2>
       </div>
-      <nav className="flex space-x-4">
+      <nav className="flex items-center space-x-4">
         <a href="/home" className="text-gray-700 hover:text-gray-900">
           Home
         </a>
@@ -21,7 +21,7 @@ const Header: FC = () => {
           Page X
         </a>
       </nav>
-      <div className="flex items-center space-x-4">
+      <div className="flex items-center">
         <LogoutButton />
       </div>
     </header>
